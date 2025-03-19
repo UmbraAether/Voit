@@ -19,7 +19,19 @@
 ;;
 ;;; Code:
 
+(defun main-welcome-msg ()
+  "Welcome message inserted into the buffer."
+  (format "This is the welcome message that will be expanded on later\n"))
 
+(defun main-open-buffer ()
+  "Open a new buffer named *Main Buffer* and insert a welcome message."
+  (interactive)
+  (let ((buf (get-buffer-create "*Main Buffer*")))
+    (with-current-buffer buf
+      (erase-buffer)
+      (insert (main-welcome-msg))
+      (insert "Type h for the help menu"))
+    (pop-to-buffer buf)))
 
 (provide 'main)
 ;;; main.el ends here
